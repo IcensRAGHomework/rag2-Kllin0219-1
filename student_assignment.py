@@ -21,20 +21,20 @@ def hw02_2(q2_pdf):
     
     whole_text = "\n".join(doc.page_content for doc in docs)
     
-    regex_separator = r'(?=\n\s*第\s.*(?:條|章).*)'
+    regex_separator = r'(?=\n\s*第\s*[一二三四五六七八九十0-9-]+\s*(?:條|章)\s)'
 
     recursive_splitter = RecursiveCharacterTextSplitter(
         chunk_overlap=0,
-        chunk_size=30,
+        chunk_size=10,
         separators=[regex_separator],
         is_separator_regex=True
     )
     
     chunks = recursive_splitter.split_text(whole_text)
-    # for chunk in chunks:
-    #     print("===")
-    #     print(chunk)
-    # print(chunks[0])
+    for chunk in chunks:
+        print("===")
+        print(chunk)
+    print(chunks[0])
     return len(chunks)
 
 
